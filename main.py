@@ -3,6 +3,7 @@
 import socket, os, sys
 import util, cfg
 from kifu_list import *
+from players import *
 
 class TygemKifu:
 	
@@ -21,8 +22,13 @@ class TygemKifu:
 	def Run(self):
 		try:
 			self.InitSocket(cfg.IP, cfg.PORT)
+			player = Players().GetID(cfg.TEST_PLAYER2)
+			print 'player name = ' + cfg.TEST_PLAYER2
+			print 'player id byte = ' + util.GetByteStr(player)
+
+
 			kifu_list = KifuList(self.sock)
-			kifu_list.GetKifuList(cfg.PLAYER)
+			kifu_list.GetKifuList(player)
 		finally:
 			self.ShutDown()
 
