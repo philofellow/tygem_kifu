@@ -22,13 +22,12 @@ class TygemKifu:
 	def Run(self):
 		try:
 			self.InitSocket(cfg.IP, cfg.PORT)
-			player = Players().GetID(cfg.TEST_PLAYER2)
-			print 'player name = ' + cfg.TEST_PLAYER2
-			print 'player id byte = ' + util.GetByteStr(player)
-
-
 			kifu_list = KifuList(self.sock)
-			kifu_list.GetKifuList(player)
+			k = kifu_list.GetKifuList(cfg.TEST_PLAYER3)
+			for i in k:
+				kifu_list.GetKifu(i)
+			
+
 		finally:
 			self.ShutDown()
 
